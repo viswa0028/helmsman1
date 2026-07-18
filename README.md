@@ -37,52 +37,78 @@ The result is an AI-powered system that **optimizes cloud costs without compromi
 
 ---
 
-# ❗ Problem Statement
+## ❗ Problem
 
-Modern Kubernetes operations are largely reactive.
+Modern Kubernetes management is largely reactive.
 
-Operators continuously monitor dashboards and manually decide:
+Autoscalers respond only to CPU or memory thresholds and cannot reason about operational safety. Engineers must manually decide whether infrastructure changes are safe, often leading to:
 
-- Which deployment should be scaled?
-- Can replicas be safely reduced?
-- Will scaling violate PodDisruptionBudgets?
-- Is rollback required?
-- Should workloads be moved?
-
-Current autoscalers only react to resource utilization (CPU/Memory).
-
-They **do not understand operational safety**.
-
-This leads to:
-
-- Over-provisioned clusters
-- Higher cloud costs
-- Manual intervention
-- Accidental downtime
-- Unsafe scaling decisions
-
----
+- 💸 Over-provisioned clusters
+- ⚠️ Unsafe scale-down operations
+- 🧑‍💻 Continuous manual intervention
+- 🚨 Accidental downtime
 
 # 💡 Our Solution
 
-HelmsMan introduces **AI-driven autonomous remediation**.
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#E3F2FD',
+    'primaryTextColor': '#0D47A1',
+    'primaryBorderColor': '#64B5F6',
+    'lineColor': '#1976D2',
+    'secondaryColor': '#E8F5E9',
+    'tertiaryColor': '#fff'
+  },
+  'flowchart': {
+    'nodeSpacing': 50,
+    'rankSpacing': 70
+  }
+}%%}
 
-Instead of relying only on metrics, HelmsMan:
+graph TD
+    %% Define Nodes
+    U[("👤 User")]
+    
+    subgraph Agents ["🧠 MCP Multi-Agent Negotiation Loop"]
+        FO[("🤖 FinOps Agent<br/>(Cost Optimizer)")]
+        AG[("🛡️ Availability Guardian<br/>(Risk Analyzer)")]
+    end
+    
+    subgraph Enforcement ["🔐 Programmatic Veto"]
+        SE{"🚦 NitroStack<br/>Safety Engine<br/>(TS Code)"}
+    end
+    
+    K8S[("☸️ Live Kubernetes Cluster<br/>(Target Infrastructure)")]
 
-- Reads the **live Kubernetes cluster**
-- Understands deployment health
-- Reads PodDisruptionBudgets
-- Evaluates node status
-- Negotiates actions using multiple AI agents
-- Enforces safety directly inside the MCP server
+    %% Define Connections & Descriptions
+    U -- "Requests Optimization<br/>(e.g., 'Reduce Costs')" --> FO
+    
+    FO == "Proposes Scale-Down<br/>(get_cluster_state tool)" ==> AG
+    
+    AG -- "Reviews against SLAs" --> FO
+    AG == "Approves/Modifies Proposal" ==> SE
+    
+    SE -.->|Rejects via PDB check| AG
+    SE == "Executes Validated Action<br/>(scale_deployment tool)" ==> K8S
 
-The important part:
+    %% Node Styling
+    classDef plain fill:#fff,stroke:#333,stroke-width:1px,rx:5,ry:5;
+    classDef agent fill:#E3F2FD,stroke:#1976D2,stroke-width:2px,rx:10,ry:10,color:#0D47A1;
+    classDef guardian fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,rx:10,ry:10,color:#1B5E20;
+    classDef safety fill:#FFFDE7,stroke:#FBC02D,stroke-width:2px,stroke-dasharray: 5 5,color:#F57F17;
+    classDef k8s fill:#f9f9f9,stroke:#326ce5,stroke-width:2px,rx:15,ry:15,color:#326ce5;
+    classDef user fill:#fafafa,stroke:#616161,stroke-width:2px,rx:30,ry:30,color:#212121;
 
-> **The Availability Guardian is not just another LLM response.**
+    class U user;
+    class FO agent;
+    class AG guardian;
+    class SE safety;
+    class K8S k8s;
 
-Every scaling request is validated against the **real Kubernetes API** before execution.
-
-Unsafe operations are rejected in code.
+    %% Subgraph Styling
+    style Agents fill:#fbfbfb,stroke:#e0e0e0,stroke-width:1px,stroke-dasharray: 5 5,color:#616161
+    style Enforcement fill:#fbfbfb,stroke:#e0e0e0,stroke-width:1px,stroke-dasharray: 5 5,color:#616161
 
 ---
 
