@@ -164,7 +164,7 @@ This separation guarantees that safety remains deterministic regardless of AI ou
 # 📊 Dashboard
 
 <p align="center">
-    <img src="images/dashboard.png" alt="Dashboard" width="1000">
+    <img src="images/dashboard.jpeg" alt="Dashboard" width="1000">
 </p>
 
 The HelmsMan dashboard provides real-time visibility into:
