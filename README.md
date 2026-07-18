@@ -1,9 +1,12 @@
-# 🚀 HelmsMan – Autonomous Kubernetes Remediation
-### AI-Powered Multi-Agent Kubernetes Operations using MCP
+# HelmsMan ⚓ — Autonomous Kubernetes Remediation MCP Server
 
-> **Track:** Cloud Native Computing  
-> **Anchor Technologies:** Kubernetes, kind, kube-state-metrics, NitroStack MCP Server
+[![Track: Cloud-Native](https://img.shields.io/badge/Track-Cloud--Native-blue.svg)](#)
+[![Anchor: kind](https://img.shields.io/badge/Anchor-kubernetes--sigs%2Fkind-blue.svg)](#)
+[![Framework: NitroStack](https://img.shields.io/badge/Framework-NitroStack%20MCP-orange.svg)](#)
 
+HelmsMan bridges the gap between passive dashboard-watching and safe, autonomous infrastructure management. Instead of relying on rigid, reactive CPU-threshold autoscaling, HelmsMan introduces a multi-agent adversarial negotiation loop running on top of the **Model Context Protocol (MCP)**. 
+
+Two specialized AI agents—a cost-cutting **FinOps Agent** and an aggressive **Availability Guardian**—negotiate infrastructure changes over a live Kubernetes cluster. Crucially, safety is not handled via soft agent reasoning; the server evaluates `PodDisruptionBudget.status` live in code, acting as an absolute programmatic safety gate.
 ---
 
 # 📌 Overview
