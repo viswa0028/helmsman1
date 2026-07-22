@@ -815,19 +815,6 @@ git push origin feature/my-feature
 - Kubernetes Client SDK
 - kind (Kubernetes in Docker)
 
----
-
-# 👥 Team
-
-Built for the **NitroStack MCP Hackathon**
-
-| Member | Role |
-|---------|------|
-| **Mounish Senisetty** | MCP Server Development · Kubernetes Integration · Backend |
-| **Ashrith** | AI Agent Design · Kubernetes |
-| **Sandhiya** | Research · Documentation · Testing |
-
----
 
 # 📄 License
 
